@@ -3,7 +3,7 @@
 	let virtualBounds = '';
 	let physicalBounds = '';
 	let MIN_VA = 0;
-	let MIN_PB = 0;
+	let MIN_PA = 0;
 	let prevProcNUM = -1;
 	let PIDarr = [];
 	let colorIndex = 0;
@@ -28,12 +28,12 @@
 					(this.p_base <= pid.p_base && this.p_bounds >= pid.p_bounds)
 			);
 
-			if (!overlapsExisting) {
+			//if (!overlapsExisting) {
 				if (this.v_bounds > MIN_VA) {
 					MIN_VA = Math.ceil(Math.log2(this.v_bounds));
 				}
-				if (this.p_bounds > MIN_PB) {
-					MIN_PB = Math.ceil(Math.log2(this.p_bounds));
+				if (this.p_bounds > MIN_PA) {
+					MIN_PA = Math.ceil(Math.log2(this.p_bounds));
 				}
 				this.proc_num = prevProcNUM + 1;
 				prevProcNUM++;
@@ -41,7 +41,7 @@
 				console.log(this.p_base);
 				console.log(this.v_bounds);
 				console.log(this.p_bounds);
-				console.log(MIN_PB);
+				console.log(MIN_PA);
 				console.log(MIN_VA);
 
 				const containerWidth = document.getElementById('pid-container').offsetWidth;
@@ -58,7 +58,7 @@
 				PIDBox.style.width = `${boxWidth}px`;
 				PIDBox.style.left = `${position}px`;
 				PIDBox.style.marginTop = `20px`;
-				PIDBox.innerText = `PID ${this.proc_num}`;
+				PIDBox.innerText = `PID ${this.proc_num} \n Base ${this.p_base} \n Bounds ${this.p_bounds}`;
 				document.getElementById('pid-container').appendChild(PIDBox);
 				PIDBox.onclick = () => {
 					rPID = this.proc_num;
@@ -72,16 +72,16 @@
 						PIDarr.splice(index, 1);
 
 						let minVA = Infinity;
-						let minPB = Infinity;
+						let minPA = Infinity;
 						PIDarr.forEach((pid) => {
 							if (pid.v_bounds < minVA) minVA = pid.v_bounds;
-							if (pid.p_bounds < minPB) minPB = pid.p_bounds;
+							if (pid.p_bounds < minPA) minPA = pid.p_bounds;
 						});
 						MIN_VA = Math.ceil(Math.log2(minVA));
-						MIN_PB = Math.ceil(Math.log2(minPB));
+						MIN_PA = Math.ceil(Math.log2(minPA));
 
-                        if (MIN_PB = Infinity) {
-                            MIN_PB = 0;
+                        if (MIN_PA = Infinity) {
+                            MIN_PA = 0;
                         }
                         if (MIN_VA = Infinity) {
                             MIN_VA = 0;
@@ -89,9 +89,9 @@
                         }
 					}
 				};
-			} else {
-				alert('Overlap exists with existing PID. Please choose a different range.');
-			}
+			//} else {
+			//	alert('Overlap exists with existing PID. Please choose a different range.');
+			//}
 		}
 	}
 
@@ -113,7 +113,7 @@
 	};
 
 	const calculatePA = () => {
-		if (parseInt(rPID_VA) < parseInt(rPID_bounds)) {
+		if ((parseInt(rPID_VA) < parseInt(rPID_bounds)) && (parseInt(rPID_VA) >=0)) {
 			rPID_PA = parseInt(rPID_VA) + parseInt(rPID_base);
 		} else {
 			rPID_PA = 'Out of bounds';
@@ -127,23 +127,27 @@
 <div class="grid grid-cols-5 grid-rows-5 h-screen">
 	<div class="col-span-2 row-span-3 bg-green-100 h-screen flex justify-center">
 		<div class="flex-col">
-			<form class="space-y-4">
+			<form class="space-y-4 flex-col justify-content items-cente mt-5">
+				<p class="mt-5 text-black font-mono text-center text-2xl font-bold pt-2">Process Creation</p>
+				<div class="flex flex-col space-x-4">
 				<label
 					for="physical_base"
-					class="text-black font-mono text-xl font-bold flex justify-center items-center text-center pt-6"
+					class="text-black font-mono font-bold flex justify-center items-center text-center pt-6"
 					>Enter Physical Base:</label
 				>
 				<input
 					bind:value={physicalBase}
-					class="block mt-1 p-2 border rounded-md flex text-center w-200"
+					class="block p-2 border rounded-md flex text-center w-200"
 					placeholder="Physical Base"
 					type="number"
 					min="1"
 					on:input={calculatePhysicalBounds}
 				/>
+				</div>
+				<div class="flex flex-col space-x-4">
 				<label
 					for="virtual_bounds"
-					class="text-black font-mono text-xl font-bold flex justify-center items-center text-center pt-2"
+					class="text-black font-mono font-bold flex justify-center items-center text-center pt-2"
 					>Enter Virtual Bounds:</label
 				>
 				<input
@@ -154,9 +158,11 @@
 					min="1"
 					on:input={calculatePhysicalBounds}
 				/>
+				</div>
+				<div class="flex flex-col space-x-4">
 				<label
 					for="physical_bounds"
-					class="text-black font-mono text-xl font-bold flex justify-center items-center text-center pt-2"
+					class="text-black font-mono font-bold flex justify-center items-center text-center pt-2"
 					>Physical Bounds:</label
 				>
 				<input
@@ -165,12 +171,15 @@
 					placeholder="Physical Bounds"
 					readonly
 				/>
+				</div>
+				<div class="flex flex-col space-x-4">
 				<input type="submit" id="add_pid" class="hidden" on:click={addPID} />
 				<label
 					for="add_pid"
 					class="text-black font-mono text-xl font-bold flex justify-center items-center text-center pt-2 cursor-pointer hover:text-blue-500"
 					>Add PID</label
 				>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -235,10 +244,10 @@
 				/>
 			</div>
 			<div class="flex flex-col space-x-4">
-				<label for="min_pb" class="text-black font-mono font-bold">Min PB Length:</label>
+				<label for="MIN_PA" class="text-black font-mono font-bold">Min PA Length:</label>
 				<input
-					bind:value={MIN_PB}
-					id="min_pb"
+					bind:value={MIN_PA}
+					id="MIN_PA"
 					class="flex justify-center items-center mt-1 p-2 border rounded-md text-center"
 					readonly
 				/>
@@ -253,7 +262,7 @@
 				class="-mt-10 font-mono text-xl font-bold flex justify-center items-center text-center hover:text-blue-500"
 				ondblclick="alert('To-do: make PID size dynamic, actually represent size on PA, allow creation >10')"
 			>
-				Page Table
+				PT
 			</p>
 		</div>
 	</div>
