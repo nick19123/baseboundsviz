@@ -5,19 +5,18 @@ const dev = process.argv.includes('dev');
 /** @type {import('@sveltejs/kit').Config} */
 export const prerender = true;
 
-
 const config = {
-	preprocess: vitePreprocess(),
+	preprocess: [vitePreprocess({})],
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: dev ? '' : process.env.BASE_PATH,
+			base: dev ? '' : process.env.BASE_PATH
 		}
 	},
 	prerender: {
 		default: true
-	}, 
-	trailingSlash: 'always', 
+	},
+	trailingSlash: 'always',
 	paths: {
 		base: '/baseboundsviz'
 	}
