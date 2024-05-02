@@ -5,21 +5,21 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="./_app/immutable/assets/app.D63z2HMk.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.Lz_8k-4k.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.CjeYjY7B.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.BvLojk_z.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.9MV0Boei.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.D6i5_pRv.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.CrmEryc6.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.DtOcy5es.js">
+		<link href="./_app/immutable/assets/0.D63z2HMk.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.DXbuRAFZ.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.CcemL0JV.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.CtbWrGNo.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.Akinr-pM.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.COG5kb_r.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.Dptd7FV5.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.BtPEwF8N.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">  <h1 class="bg-black text-white font-mono text-3xl font-bold flex items-center justify-center" data-svelte-h="svelte-12ncff8">Base &amp; Bounds Visualization</h1> <div class="grid grid-cols-5 grid-rows-5 h-screen"><div class="col-span-2 row-span-3 bg-green-100 h-screen flex justify-center"><div class="flex-col"><form class="space-y-4 flex-col justify-content items-cente mt-5"><p class="mt-5 text-black font-mono text-center text-2xl font-bold pt-2" data-svelte-h="svelte-1v2gt2d">Process Creation</p> <div class="flex flex-col space-x-4"><label for="physical_base" class="text-black font-mono font-bold flex justify-center items-center text-center pt-6" data-svelte-h="svelte-4h0w0d">Enter Physical Base:</label> <input class="block p-2 border rounded-md flex text-center w-200" placeholder="Physical Base" type="number" min="1" value=""></div> <div class="flex flex-col space-x-4"><label for="virtual_bounds" class="text-black font-mono font-bold flex justify-center items-center text-center pt-2" data-svelte-h="svelte-fifroh">Enter Virtual Bounds:</label> <input class="block mt-1 p-2 border rounded-md text-center" placeholder="Virtual Bounds" type="number" min="1" value=""></div> <div class="flex flex-col space-x-4"><label for="physical_bounds" class="text-black font-mono font-bold flex justify-center items-center text-center pt-2" data-svelte-h="svelte-d1gs93">Physical Bounds:</label> <input class="flex mt-1 p-2 border rounded-md text-center" placeholder="Physical Bounds" readonly value=""></div> <div class="flex flex-col space-x-4"><input type="submit" id="add_pid" class="hidden"> <label for="add_pid" class="text-black font-mono text-xl font-bold flex justify-center items-center text-center pt-2 cursor-pointer hover:text-blue-500" data-svelte-h="svelte-j8gd11">Add PID</label></div></form></div></div> <div class="col-span-3 row-span-3 col-start-3 bg-red-100 h-screen flex justify-center"><form class="space-y-4 flex-col justify-content items-cente mt-5"><p class="text-black font-mono text-center text-2xl font-bold pt-2" data-svelte-h="svelte-kbiu2t">MMU</p> <div class="flex flex-col space-x-4"><label for="running_PID" class="text-black font-mono font-bold" data-svelte-h="svelte-2lqb6h">Running PID:</label> <input id="running_PID" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div> <div class="flex flex-col space-x-4"><label for="rp_base" class="text-black font-mono font-bold" data-svelte-h="svelte-1mw6rfb">Base:</label> <input id="rp_base" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div> <div class="flex flex-col space-x-4"><label for="rp_bound" class="text-black font-mono font-bold" data-svelte-h="svelte-tuuwz1">Virtual Bounds:</label> <input id="rp_bound" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div> <div class="flex flex-col space-x-4"><label for="rp_va" class="text-black font-mono font-bold" data-svelte-h="svelte-tsnq19">Enter VA:</label> <input id="rp_va" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" value="0"></div> <div class="flex flex-col space-x-4"><label for="rp_pa" class="text-black font-mono font-bold" data-svelte-h="svelte-tndvsv">PA:</label> <input id="rp_pa" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div></form> <form class="space-y-4 flex-col justify-content items-center mt-5 mx-10"><p class="text-black font-mono text-center text-2xl font-bold pt-2" data-svelte-h="svelte-jekptp">Min VA/PA</p> <div class="flex flex-col space-x-4"><label for="min_va" class="text-black font-mono font-bold" data-svelte-h="svelte-1ghoiwv">Min VA Length:</label> <input id="min_va" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div> <div class="flex flex-col space-x-4"><label for="MIN_PA" class="text-black font-mono font-bold" data-svelte-h="svelte-rd4z0j">Min PA Length:</label> <input id="MIN_PA" class="flex justify-center items-center mt-1 p-2 border rounded-md text-center" readonly value="0"></div></form></div> <div class="col-span-5 row-span-2 row-start-4 bg-blue-100 h-screen relative flex justify-center items-start" data-svelte-h="svelte-o7t82w"><div id="pid-container" class="my-14 w-[1229px] h-[100px] bg-zinc-700 rounded-3xl"><p class="-mt-10 font-mono text-xl font-bold flex justify-center items-center text-center hover:text-blue-500" ondblclick="alert('To-do: make PID size dynamic, actually represent size on PA, allow creation >10')">PT</p></div></div></div> 
 			
 			<script>
 				{
-					__sveltekit_qpqc34 = {
+					__sveltekit_1rud672 = {
 						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
@@ -28,8 +28,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.Lz_8k-4k.js"),
-						import("./_app/immutable/entry/app.9MV0Boei.js")
+						import("./_app/immutable/entry/start.DXbuRAFZ.js"),
+						import("./_app/immutable/entry/app.Akinr-pM.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
