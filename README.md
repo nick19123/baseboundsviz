@@ -1,6 +1,6 @@
 # Base & Bounds visualization tool
-based on the original visualization tool from class
-working theory from (OSTEP chapter 15)[https://pages.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf]
+- based on the original visualization tool from class
+- working theory from [OSTEP chapter 15](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf)
 made for CPTR 365 Operating Systems 
 
 # Future work:
