@@ -6,9 +6,10 @@ const dev = process.argv.includes('dev');
 export const prerender = true;
 
 const config = {
-	preprocess: [vitePreprocess({
-		postcss: true,
-	})],
+	preprocess: [
+		vitePreprocess({
+		})
+	],
 	kit: {
 		adapter: adapter(),
 		paths: {
