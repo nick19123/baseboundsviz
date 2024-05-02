@@ -1,5 +1,4 @@
 <script>
-	import "../app.css";
 	let physicalBase = '';
 	let virtualBounds = '';
 	let physicalBounds = '';
